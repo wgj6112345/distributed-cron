@@ -1,0 +1,46 @@
+syntax = "proto3";
+
+package proto;
+
+option go_package = "./proto";
+
+import "google/protobuf/timestamp.proto";
+
+// The Worker service definition.
+service Worker {
+  // Master calls this RPC to command a worker to execute a task.
+  rpc ExecuteTask (TaskRequest) returns (TaskResponse);
+}
+
+// The request message containing the details of the task to execute.
+message TaskRequest {
+  string id = 1;
+  string name = 2;
+  string cron_expr = 3;
+  string executor_type = 4;
+  ExecutorHttp http_executor = 5;
+  ExecutorShell shell_executor = 6;
+  string concurrency_policy = 7;
+  RetryPolicy retry_policy = 8;
+  google.protobuf.Timestamp created_at = 9;
+}
+
+message ExecutorHttp {
+  string url = 1;
+  string method = 2;
+}
+
+message ExecutorShell {
+  string command = 1;
+}
+
+message RetryPolicy {
+  int32 max_retries = 1;
+  string backoff = 2; // duration string, e.g., "30s"
+}
+
+// The response message indicating if the task was accepted.
+message TaskResponse {
+  string execution_id = 1; // A unique ID for this specific execution attempt.
+  string error_message = 2; // Any immediate error, e.g., "invalid task type".
+}

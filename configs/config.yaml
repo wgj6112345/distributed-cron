@@ -1,0 +1,10 @@
+# Etcd related configuration
+etcd_endpoints:
+  - "127.0.0.1:2379"
+etcd_timeout: 5s
+
+# HTTP API server configuration
+http_listen_addr: ":8080"
+
+# Leader election configuration
+leader_election_ttl: 10s

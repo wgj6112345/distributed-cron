@@ -1,0 +1,35 @@
+{
+    "compilerOptions": {
+        "target": "ESNext",
+        "module": "esnext",
+        "moduleResolution": "node", // 解决模块解析（如 axios 找不到）
+        "strict": true,
+        "jsx": "preserve",
+        "sourceMap": true,
+        "resolveJsonModule": true,
+        "esModuleInterop": true,
+        "lib": [
+            "ESNext",
+            "DOM"
+        ],
+        "types": [
+            "vite/client",
+            "node"
+        ], // 解决 vite/client 类型找不到
+        "baseUrl": ".",
+        "paths": {
+            "@/*": [
+                "src/*"
+            ] // 匹配 Vite 的路径别名
+        }
+    },
+    "include": [
+        "src/**/*.ts",
+        "src/**/*.d.ts",
+        "src/**/*.tsx",
+        "src/**/*.vue"
+    ],
+    "exclude": [
+        "node_modules"
+    ]
+}
