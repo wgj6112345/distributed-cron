@@ -4,8 +4,6 @@
 *.dll
 *.so
 *.dylib
-master
-worker
 
 # Go build cache
 /pkg/
